@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BLL
+namespace MODEL
 {
-    public class Class1
+    public class Pet
     {
+        public int PetId { get; set; }
     }
 }
