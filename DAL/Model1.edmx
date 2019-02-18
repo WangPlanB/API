@@ -1,0 +1,603 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PetStoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cart">
+          <Key>
+            <PropertyRef Name="CartId" />
+          </Key>
+          <Property Name="CartId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" />
+          <Property Name="ProductName" Type="varchar" MaxLength="50" />
+          <Property Name="ProductHeadPath" Type="varchar" MaxLength="150" />
+          <Property Name="ProductPrice" Type="float" />
+          <Property Name="Number" Type="int" />
+          <Property Name="Pay" Type="float" />
+          <Property Name="UsersId" Type="int" />
+        </EntityType>
+        <EntityType Name="OrderMassage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" />
+          <Property Name="OrdersId" Type="int" />
+          <Property Name="Num" Type="int" />
+          <Property Name="Price" Type="float" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="OrdersId" />
+          </Key>
+          <Property Name="OrdersId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Pay" Type="float" />
+          <Property Name="Time" Type="datetime" />
+          <Property Name="State" Type="int" />
+          <Property Name="UsersId" Type="int" />
+        </EntityType>
+        <EntityType Name="Pet">
+          <Key>
+            <PropertyRef Name="PetId" />
+          </Key>
+          <Property Name="PetId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PetName" Type="varchar" MaxLength="50" />
+          <Property Name="PetStartTime" Type="varchar" MaxLength="50" />
+          <Property Name="PetInType" Type="varchar" MaxLength="50" />
+          <Property Name="PetType" Type="varchar" MaxLength="50" />
+          <Property Name="PetInventory" Type="int" />
+          <Property Name="PetBodily" Type="varchar" MaxLength="50" />
+          <Property Name="PetPrice" Type="float" />
+          <Property Name="PetState" Type="int" />
+          <Property Name="UsersId" Type="int" />
+        </EntityType>
+        <EntityType Name="PetHead">
+          <Key>
+            <PropertyRef Name="PetHeadId" />
+          </Key>
+          <Property Name="PetHeadId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PetHeadPath" Type="varchar" MaxLength="150" />
+          <Property Name="PetId" Type="int" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductName" Type="varchar" MaxLength="50" />
+          <Property Name="Productdescribe" Type="varchar" MaxLength="50" />
+          <Property Name="ProductPrice" Type="float" />
+          <Property Name="ProductInventory" Type="int" />
+          <Property Name="ProductState" Type="int" />
+          <Property Name="UsersId" Type="int" />
+        </EntityType>
+        <EntityType Name="ProductHead">
+          <Key>
+            <PropertyRef Name="ProductHeadId" />
+          </Key>
+          <Property Name="ProductHeadId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductHeadPath" Type="varchar" MaxLength="150" />
+          <Property Name="ProductId" Type="int" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UsersId" />
+          </Key>
+          <Property Name="UsersId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UsersName" Type="varchar" MaxLength="50" />
+          <Property Name="UsersPwd" Type="varchar" MaxLength="50" />
+          <Property Name="UPhone" Type="varchar" MaxLength="13" />
+          <Property Name="ULoc" Type="varchar" MaxLength="50" />
+          <Property Name="UAuthority" Type="int" />
+        </EntityType>
+        <Association Name="FK__Cart__UsersId__173876EA">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UsersId" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="UsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderMass__Order__4BAC3F29">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+          <End Role="OrderMassage" Type="Self.OrderMassage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrdersId" />
+            </Principal>
+            <Dependent Role="OrderMassage">
+              <PropertyRef Name="OrdersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderMass__Produ__4AB81AF0">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="OrderMassage" Type="Self.OrderMassage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="OrderMassage">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__UsersId__36B12243">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UsersId" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="UsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pet__UsersId__3E52440B">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Pet" Type="Self.Pet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UsersId" />
+            </Principal>
+            <Dependent Role="Pet">
+              <PropertyRef Name="UsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PetHead__PetId__412EB0B6">
+          <End Role="Pet" Type="Self.Pet" Multiplicity="0..1" />
+          <End Role="PetHead" Type="Self.PetHead" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pet">
+              <PropertyRef Name="PetId" />
+            </Principal>
+            <Dependent Role="PetHead">
+              <PropertyRef Name="PetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Product__UsersId__440B1D61">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UsersId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="UsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductHe__Produ__46E78A0C">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="ProductHead" Type="Self.ProductHead" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="ProductHead">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PetStoreModelStoreContainer">
+          <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderMassage" EntityType="Self.OrderMassage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pet" EntityType="Self.Pet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PetHead" EntityType="Self.PetHead" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductHead" EntityType="Self.ProductHead" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Cart__UsersId__173876EA" Association="Self.FK__Cart__UsersId__173876EA">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Cart" EntitySet="Cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderMass__Order__4BAC3F29" Association="Self.FK__OrderMass__Order__4BAC3F29">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderMassage" EntitySet="OrderMassage" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderMass__Produ__4AB81AF0" Association="Self.FK__OrderMass__Produ__4AB81AF0">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="OrderMassage" EntitySet="OrderMassage" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__UsersId__36B12243" Association="Self.FK__Orders__UsersId__36B12243">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pet__UsersId__3E52440B" Association="Self.FK__Pet__UsersId__3E52440B">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Pet" EntitySet="Pet" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PetHead__PetId__412EB0B6" Association="Self.FK__PetHead__PetId__412EB0B6">
+            <End Role="Pet" EntitySet="Pet" />
+            <End Role="PetHead" EntitySet="PetHead" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Product__UsersId__440B1D61" Association="Self.FK__Product__UsersId__440B1D61">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductHe__Produ__46E78A0C" Association="Self.FK__ProductHe__Produ__46E78A0C">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductHead" EntitySet="ProductHead" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PetStoreModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cart">
+          <Key>
+            <PropertyRef Name="CartId" />
+          </Key>
+          <Property Name="CartId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" />
+          <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProductHeadPath" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ProductPrice" Type="Double" />
+          <Property Name="Number" Type="Int32" />
+          <Property Name="Pay" Type="Double" />
+          <Property Name="UsersId" Type="Int32" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Cart__UsersId__173876EA" FromRole="Cart" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="OrderMassage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" />
+          <Property Name="OrdersId" Type="Int32" />
+          <Property Name="Num" Type="Int32" />
+          <Property Name="Price" Type="Double" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__OrderMass__Order__4BAC3F29" FromRole="OrderMassage" ToRole="Orders" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__OrderMass__Produ__4AB81AF0" FromRole="OrderMassage" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="OrdersId" />
+          </Key>
+          <Property Name="OrdersId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Pay" Type="Double" />
+          <Property Name="Time" Type="DateTime" Precision="3" />
+          <Property Name="State" Type="Int32" />
+          <Property Name="UsersId" Type="Int32" />
+          <NavigationProperty Name="OrderMassage" Relationship="Self.FK__OrderMass__Order__4BAC3F29" FromRole="Orders" ToRole="OrderMassage" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Orders__UsersId__36B12243" FromRole="Orders" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Pet">
+          <Key>
+            <PropertyRef Name="PetId" />
+          </Key>
+          <Property Name="PetId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PetName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PetStartTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PetInType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PetType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PetInventory" Type="Int32" />
+          <Property Name="PetBodily" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PetPrice" Type="Double" />
+          <Property Name="PetState" Type="Int32" />
+          <Property Name="UsersId" Type="Int32" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Pet__UsersId__3E52440B" FromRole="Pet" ToRole="Users" />
+          <NavigationProperty Name="PetHead" Relationship="Self.FK__PetHead__PetId__412EB0B6" FromRole="Pet" ToRole="PetHead" />
+        </EntityType>
+        <EntityType Name="PetHead">
+          <Key>
+            <PropertyRef Name="PetHeadId" />
+          </Key>
+          <Property Name="PetHeadId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PetHeadPath" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="PetId" Type="Int32" />
+          <NavigationProperty Name="Pet" Relationship="Self.FK__PetHead__PetId__412EB0B6" FromRole="PetHead" ToRole="Pet" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Productdescribe" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProductPrice" Type="Double" />
+          <Property Name="ProductInventory" Type="Int32" />
+          <Property Name="ProductState" Type="Int32" />
+          <Property Name="UsersId" Type="Int32" />
+          <NavigationProperty Name="OrderMassage" Relationship="Self.FK__OrderMass__Produ__4AB81AF0" FromRole="Product" ToRole="OrderMassage" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__Product__UsersId__440B1D61" FromRole="Product" ToRole="Users" />
+          <NavigationProperty Name="ProductHead" Relationship="Self.FK__ProductHe__Produ__46E78A0C" FromRole="Product" ToRole="ProductHead" />
+        </EntityType>
+        <EntityType Name="ProductHead">
+          <Key>
+            <PropertyRef Name="ProductHeadId" />
+          </Key>
+          <Property Name="ProductHeadId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductHeadPath" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ProductId" Type="Int32" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__ProductHe__Produ__46E78A0C" FromRole="ProductHead" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UsersId" />
+          </Key>
+          <Property Name="UsersId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UsersName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UsersPwd" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UPhone" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="ULoc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UAuthority" Type="Int32" />
+          <NavigationProperty Name="Cart" Relationship="Self.FK__Cart__UsersId__173876EA" FromRole="Users" ToRole="Cart" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__UsersId__36B12243" FromRole="Users" ToRole="Orders" />
+          <NavigationProperty Name="Pet" Relationship="Self.FK__Pet__UsersId__3E52440B" FromRole="Users" ToRole="Pet" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__Product__UsersId__440B1D61" FromRole="Users" ToRole="Product" />
+        </EntityType>
+        <Association Name="FK__Cart__UsersId__173876EA">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UsersId" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="UsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderMass__Order__4BAC3F29">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+          <End Role="OrderMassage" Type="Self.OrderMassage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrdersId" />
+            </Principal>
+            <Dependent Role="OrderMassage">
+              <PropertyRef Name="OrdersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderMass__Produ__4AB81AF0">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="OrderMassage" Type="Self.OrderMassage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="OrderMassage">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__UsersId__36B12243">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UsersId" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="UsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pet__UsersId__3E52440B">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Pet" Type="Self.Pet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UsersId" />
+            </Principal>
+            <Dependent Role="Pet">
+              <PropertyRef Name="UsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PetHead__PetId__412EB0B6">
+          <End Role="Pet" Type="Self.Pet" Multiplicity="0..1" />
+          <End Role="PetHead" Type="Self.PetHead" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pet">
+              <PropertyRef Name="PetId" />
+            </Principal>
+            <Dependent Role="PetHead">
+              <PropertyRef Name="PetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Product__UsersId__440B1D61">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UsersId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="UsersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductHe__Produ__46E78A0C">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="ProductHead" Type="Self.ProductHead" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="ProductHead">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PetStoreEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cart" EntityType="Self.Cart" />
+          <EntitySet Name="OrderMassage" EntityType="Self.OrderMassage" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" />
+          <EntitySet Name="Pet" EntityType="Self.Pet" />
+          <EntitySet Name="PetHead" EntityType="Self.PetHead" />
+          <EntitySet Name="Product" EntityType="Self.Product" />
+          <EntitySet Name="ProductHead" EntityType="Self.ProductHead" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="FK__Cart__UsersId__173876EA" Association="Self.FK__Cart__UsersId__173876EA">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Cart" EntitySet="Cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderMass__Order__4BAC3F29" Association="Self.FK__OrderMass__Order__4BAC3F29">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderMassage" EntitySet="OrderMassage" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderMass__Produ__4AB81AF0" Association="Self.FK__OrderMass__Produ__4AB81AF0">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="OrderMassage" EntitySet="OrderMassage" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__UsersId__36B12243" Association="Self.FK__Orders__UsersId__36B12243">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pet__UsersId__3E52440B" Association="Self.FK__Pet__UsersId__3E52440B">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Pet" EntitySet="Pet" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PetHead__PetId__412EB0B6" Association="Self.FK__PetHead__PetId__412EB0B6">
+            <End Role="Pet" EntitySet="Pet" />
+            <End Role="PetHead" EntitySet="PetHead" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Product__UsersId__440B1D61" Association="Self.FK__Product__UsersId__440B1D61">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductHe__Produ__46E78A0C" Association="Self.FK__ProductHe__Produ__46E78A0C">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductHead" EntitySet="ProductHead" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PetStoreModelStoreContainer" CdmEntityContainer="PetStoreEntities">
+          <EntitySetMapping Name="Cart">
+            <EntityTypeMapping TypeName="PetStoreModel.Cart">
+              <MappingFragment StoreEntitySet="Cart">
+                <ScalarProperty Name="CartId" ColumnName="CartId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductHeadPath" ColumnName="ProductHeadPath" />
+                <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Pay" ColumnName="Pay" />
+                <ScalarProperty Name="UsersId" ColumnName="UsersId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderMassage">
+            <EntityTypeMapping TypeName="PetStoreModel.OrderMassage">
+              <MappingFragment StoreEntitySet="OrderMassage">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="OrdersId" ColumnName="OrdersId" />
+                <ScalarProperty Name="Num" ColumnName="Num" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="PetStoreModel.Orders">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="OrdersId" ColumnName="OrdersId" />
+                <ScalarProperty Name="Pay" ColumnName="Pay" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="UsersId" ColumnName="UsersId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pet">
+            <EntityTypeMapping TypeName="PetStoreModel.Pet">
+              <MappingFragment StoreEntitySet="Pet">
+                <ScalarProperty Name="PetId" ColumnName="PetId" />
+                <ScalarProperty Name="PetName" ColumnName="PetName" />
+                <ScalarProperty Name="PetStartTime" ColumnName="PetStartTime" />
+                <ScalarProperty Name="PetInType" ColumnName="PetInType" />
+                <ScalarProperty Name="PetType" ColumnName="PetType" />
+                <ScalarProperty Name="PetInventory" ColumnName="PetInventory" />
+                <ScalarProperty Name="PetBodily" ColumnName="PetBodily" />
+                <ScalarProperty Name="PetPrice" ColumnName="PetPrice" />
+                <ScalarProperty Name="PetState" ColumnName="PetState" />
+                <ScalarProperty Name="UsersId" ColumnName="UsersId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PetHead">
+            <EntityTypeMapping TypeName="PetStoreModel.PetHead">
+              <MappingFragment StoreEntitySet="PetHead">
+                <ScalarProperty Name="PetHeadId" ColumnName="PetHeadId" />
+                <ScalarProperty Name="PetHeadPath" ColumnName="PetHeadPath" />
+                <ScalarProperty Name="PetId" ColumnName="PetId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="PetStoreModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="Productdescribe" ColumnName="Productdescribe" />
+                <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
+                <ScalarProperty Name="ProductInventory" ColumnName="ProductInventory" />
+                <ScalarProperty Name="ProductState" ColumnName="ProductState" />
+                <ScalarProperty Name="UsersId" ColumnName="UsersId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductHead">
+            <EntityTypeMapping TypeName="PetStoreModel.ProductHead">
+              <MappingFragment StoreEntitySet="ProductHead">
+                <ScalarProperty Name="ProductHeadId" ColumnName="ProductHeadId" />
+                <ScalarProperty Name="ProductHeadPath" ColumnName="ProductHeadPath" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="PetStoreModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UsersId" ColumnName="UsersId" />
+                <ScalarProperty Name="UsersName" ColumnName="UsersName" />
+                <ScalarProperty Name="UsersPwd" ColumnName="UsersPwd" />
+                <ScalarProperty Name="UPhone" ColumnName="UPhone" />
+                <ScalarProperty Name="ULoc" ColumnName="ULoc" />
+                <ScalarProperty Name="UAuthority" ColumnName="UAuthority" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
