@@ -42,6 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="UsersBll.cs" />
+    <Compile Include="Petbll.cs" />
+    <Compile Include="PetHeadbll.cs" />
+    <Compile Include="Productbll.cs" />
+    <Compile Include="ProductHeadbll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
