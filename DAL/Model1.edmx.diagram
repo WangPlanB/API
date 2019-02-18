@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="93cb9a636b8a4b16a229751992e762bd" Name="Diagram1">
-        <EntityTypeShape EntityType="PetStoreModel.Cart" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PetStoreModel.Cart" Width="1.875" PointX="3" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="PetStoreModel.OrderMassage" Width="1.5" PointX="8.25" PointY="8.625" IsExpanded="true" />
         <EntityTypeShape EntityType="PetStoreModel.Orders" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="PetStoreModel.Pet" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
