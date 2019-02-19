@@ -182,7 +182,13 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UsersApiController.cs" />
+    <Compile Include="Controllers\PetHeadController.cs" />
+    <Compile Include="Controllers\PetsController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ProductHeadController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\OrderMessageController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -283,14 +289,13 @@
       <Project>{700dd6af-b4cb-484b-8c3e-b969015e0d6a}</Project>
       <Name>BLL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DAL\DAL.csproj">
-      <Project>{0179C4D7-37C8-4402-8BA2-EE66847A744B}</Project>
-      <Name>DAL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MODEL\MODEL.csproj">
       <Project>{1a3c11f7-dad1-436f-b3ee-3859e0adf14c}</Project>
       <Name>MODEL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
