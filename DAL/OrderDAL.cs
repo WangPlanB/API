@@ -9,7 +9,7 @@ namespace DAL
     
     public class OrderDAL
     {
-        PetStoreEntities Pet = new PetStoreEntities();
+        PetStoreEntities1 Pet = new PetStoreEntities1();
         public int Create(Orders model)
         {
             Pet.Orders.Add(model);

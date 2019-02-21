@@ -9,7 +9,7 @@ namespace DAL
 {
     public class CartDAL
     {
-        PetStoreEntities context = new PetStoreEntities();
+        PetStoreEntities1 context = new PetStoreEntities1();
         //显示所有购物车信息
         public List<Cart> ShowCart()
         {

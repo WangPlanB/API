@@ -8,14 +8,13 @@ namespace DAL
 {
     public class UsersDal
     {
-        PetStoreEntities db = new PetStoreEntities();
+        PetStoreEntities1 db = new PetStoreEntities1();
         /// <summary>
         /// 注册用户
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public int Add(Users model)
-
+        public int Add(DAL.Users model)
         {
             db.Users.Add(model);
             return db.SaveChanges();

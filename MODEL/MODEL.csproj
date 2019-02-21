@@ -42,8 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="UsersModel.cs" />
-    <Compile Include="Pet.cs" />
-    <Compile Include="Product.cs" />
+    <Compile Include="Pets.cs" />
     <Compile Include="Cart.cs" />
     <Compile Include="OrderMessageModel.cs" />
     <Compile Include="OrdersModel.cs" />

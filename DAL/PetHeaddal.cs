@@ -8,7 +8,7 @@ namespace DAL
 {
     public class PetHeaddal
     {
-        PetStoreEntities petstore = new PetStoreEntities();
+        PetStoreEntities1 petstore = new PetStoreEntities1();
         /// <summary>
         /// 添加宠物
         /// </summary>

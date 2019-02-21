@@ -17,6 +17,7 @@ namespace DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Pet()
         {
+            this.OrderMassage = new HashSet<OrderMassage>();
             this.PetHead = new HashSet<PetHead>();
         }
     
@@ -31,6 +32,8 @@ namespace DAL
         public Nullable<int> PetState { get; set; }
         public Nullable<int> UsersId { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderMassage> OrderMassage { get; set; }
         public virtual Users Users { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PetHead> PetHead { get; set; }

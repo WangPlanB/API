@@ -12,7 +12,7 @@ namespace BLL
 
         public int Create(OrderMassage model)
         {
-            return dal.Add(model);
+            return dal.Create(model);
         }
         public int Delete(int Id)
         {

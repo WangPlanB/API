@@ -44,8 +44,6 @@
     <Compile Include="UsersBll.cs" />
     <Compile Include="Petbll.cs" />
     <Compile Include="PetHeadbll.cs" />
-    <Compile Include="Productbll.cs" />
-    <Compile Include="ProductHeadbll.cs" />
     <Compile Include="CartBLL.cs" />
     <Compile Include="OrderBLL.cs" />
     <Compile Include="OrderMessageBLL.cs" />

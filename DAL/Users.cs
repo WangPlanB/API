@@ -20,7 +20,6 @@ namespace DAL
             this.Cart = new HashSet<Cart>();
             this.Orders = new HashSet<Orders>();
             this.Pet = new HashSet<Pet>();
-            this.Product = new HashSet<Product>();
         }
     
         public int UsersId { get; set; }
@@ -36,7 +35,5 @@ namespace DAL
         public virtual ICollection<Orders> Orders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pet> Pet { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Product> Product { get; set; }
     }
 }

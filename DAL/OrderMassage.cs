@@ -15,12 +15,12 @@ namespace DAL
     public partial class OrderMassage
     {
         public int Id { get; set; }
-        public Nullable<int> ProductId { get; set; }
+        public Nullable<int> PetId { get; set; }
         public Nullable<int> OrdersId { get; set; }
         public Nullable<int> Num { get; set; }
         public Nullable<double> Price { get; set; }
     
         public virtual Orders Orders { get; set; }
-        public virtual Product Product { get; set; }
+        public virtual Pet Pet { get; set; }
     }
 }

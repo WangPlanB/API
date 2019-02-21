@@ -23,7 +23,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ProductId" Type="int" />
+          <Property Name="PetId" Type="int" />
           <Property Name="OrdersId" Type="int" />
           <Property Name="Num" Type="int" />
           <Property Name="Price" Type="float" />
@@ -61,26 +61,6 @@
           <Property Name="PetHeadPath" Type="varchar" MaxLength="150" />
           <Property Name="PetId" Type="int" />
         </EntityType>
-        <EntityType Name="Product">
-          <Key>
-            <PropertyRef Name="ProductId" />
-          </Key>
-          <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ProductName" Type="varchar" MaxLength="50" />
-          <Property Name="Productdescribe" Type="varchar" MaxLength="50" />
-          <Property Name="ProductPrice" Type="float" />
-          <Property Name="ProductInventory" Type="int" />
-          <Property Name="ProductState" Type="int" />
-          <Property Name="UsersId" Type="int" />
-        </EntityType>
-        <EntityType Name="ProductHead">
-          <Key>
-            <PropertyRef Name="ProductHeadId" />
-          </Key>
-          <Property Name="ProductHeadId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ProductHeadPath" Type="varchar" MaxLength="150" />
-          <Property Name="ProductId" Type="int" />
-        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="UsersId" />
@@ -104,7 +84,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderMass__Order__4BAC3F29">
+        <Association Name="FK__OrderMass__Order__52593CB8">
           <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
           <End Role="OrderMassage" Type="Self.OrderMassage" Multiplicity="*" />
           <ReferentialConstraint>
@@ -116,15 +96,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderMass__Produ__4AB81AF0">
-          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+        <Association Name="FK__OrderMass__PetId__5165187F">
+          <End Role="Pet" Type="Self.Pet" Multiplicity="0..1" />
           <End Role="OrderMassage" Type="Self.OrderMassage" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="ProductId" />
+            <Principal Role="Pet">
+              <PropertyRef Name="PetId" />
             </Principal>
             <Dependent Role="OrderMassage">
-              <PropertyRef Name="ProductId" />
+              <PropertyRef Name="PetId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -164,49 +144,23 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Product__UsersId__440B1D61">
-          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
-          <End Role="Product" Type="Self.Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="UsersId" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="UsersId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__ProductHe__Produ__46E78A0C">
-          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
-          <End Role="ProductHead" Type="Self.ProductHead" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="ProductId" />
-            </Principal>
-            <Dependent Role="ProductHead">
-              <PropertyRef Name="ProductId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="PetStoreModelStoreContainer">
           <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderMassage" EntityType="Self.OrderMassage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pet" EntityType="Self.Pet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PetHead" EntityType="Self.PetHead" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ProductHead" EntityType="Self.ProductHead" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Cart__UsersId__173876EA" Association="Self.FK__Cart__UsersId__173876EA">
             <End Role="Users" EntitySet="Users" />
             <End Role="Cart" EntitySet="Cart" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderMass__Order__4BAC3F29" Association="Self.FK__OrderMass__Order__4BAC3F29">
+          <AssociationSet Name="FK__OrderMass__Order__52593CB8" Association="Self.FK__OrderMass__Order__52593CB8">
             <End Role="Orders" EntitySet="Orders" />
             <End Role="OrderMassage" EntitySet="OrderMassage" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderMass__Produ__4AB81AF0" Association="Self.FK__OrderMass__Produ__4AB81AF0">
-            <End Role="Product" EntitySet="Product" />
+          <AssociationSet Name="FK__OrderMass__PetId__5165187F" Association="Self.FK__OrderMass__PetId__5165187F">
+            <End Role="Pet" EntitySet="Pet" />
             <End Role="OrderMassage" EntitySet="OrderMassage" />
           </AssociationSet>
           <AssociationSet Name="FK__Orders__UsersId__36B12243" Association="Self.FK__Orders__UsersId__36B12243">
@@ -220,14 +174,6 @@
           <AssociationSet Name="FK__PetHead__PetId__412EB0B6" Association="Self.FK__PetHead__PetId__412EB0B6">
             <End Role="Pet" EntitySet="Pet" />
             <End Role="PetHead" EntitySet="PetHead" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Product__UsersId__440B1D61" Association="Self.FK__Product__UsersId__440B1D61">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Product" EntitySet="Product" />
-          </AssociationSet>
-          <AssociationSet Name="FK__ProductHe__Produ__46E78A0C" Association="Self.FK__ProductHe__Produ__46E78A0C">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="ProductHead" EntitySet="ProductHead" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -254,12 +200,12 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProductId" Type="Int32" />
+          <Property Name="PetId" Type="Int32" />
           <Property Name="OrdersId" Type="Int32" />
           <Property Name="Num" Type="Int32" />
           <Property Name="Price" Type="Double" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK__OrderMass__Order__4BAC3F29" FromRole="OrderMassage" ToRole="Orders" />
-          <NavigationProperty Name="Product" Relationship="Self.FK__OrderMass__Produ__4AB81AF0" FromRole="OrderMassage" ToRole="Product" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__OrderMass__Order__52593CB8" FromRole="OrderMassage" ToRole="Orders" />
+          <NavigationProperty Name="Pet" Relationship="Self.FK__OrderMass__PetId__5165187F" FromRole="OrderMassage" ToRole="Pet" />
         </EntityType>
         <EntityType Name="Orders">
           <Key>
@@ -270,7 +216,7 @@
           <Property Name="Time" Type="DateTime" Precision="3" />
           <Property Name="State" Type="Int32" />
           <Property Name="UsersId" Type="Int32" />
-          <NavigationProperty Name="OrderMassage" Relationship="Self.FK__OrderMass__Order__4BAC3F29" FromRole="Orders" ToRole="OrderMassage" />
+          <NavigationProperty Name="OrderMassage" Relationship="Self.FK__OrderMass__Order__52593CB8" FromRole="Orders" ToRole="OrderMassage" />
           <NavigationProperty Name="Users" Relationship="Self.FK__Orders__UsersId__36B12243" FromRole="Orders" ToRole="Users" />
         </EntityType>
         <EntityType Name="Pet">
@@ -287,6 +233,7 @@
           <Property Name="PetPrice" Type="Double" />
           <Property Name="PetState" Type="Int32" />
           <Property Name="UsersId" Type="Int32" />
+          <NavigationProperty Name="OrderMassage" Relationship="Self.FK__OrderMass__PetId__5165187F" FromRole="Pet" ToRole="OrderMassage" />
           <NavigationProperty Name="Users" Relationship="Self.FK__Pet__UsersId__3E52440B" FromRole="Pet" ToRole="Users" />
           <NavigationProperty Name="PetHead" Relationship="Self.FK__PetHead__PetId__412EB0B6" FromRole="Pet" ToRole="PetHead" />
         </EntityType>
@@ -298,30 +245,6 @@
           <Property Name="PetHeadPath" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="PetId" Type="Int32" />
           <NavigationProperty Name="Pet" Relationship="Self.FK__PetHead__PetId__412EB0B6" FromRole="PetHead" ToRole="Pet" />
-        </EntityType>
-        <EntityType Name="Product">
-          <Key>
-            <PropertyRef Name="ProductId" />
-          </Key>
-          <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Productdescribe" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ProductPrice" Type="Double" />
-          <Property Name="ProductInventory" Type="Int32" />
-          <Property Name="ProductState" Type="Int32" />
-          <Property Name="UsersId" Type="Int32" />
-          <NavigationProperty Name="OrderMassage" Relationship="Self.FK__OrderMass__Produ__4AB81AF0" FromRole="Product" ToRole="OrderMassage" />
-          <NavigationProperty Name="Users" Relationship="Self.FK__Product__UsersId__440B1D61" FromRole="Product" ToRole="Users" />
-          <NavigationProperty Name="ProductHead" Relationship="Self.FK__ProductHe__Produ__46E78A0C" FromRole="Product" ToRole="ProductHead" />
-        </EntityType>
-        <EntityType Name="ProductHead">
-          <Key>
-            <PropertyRef Name="ProductHeadId" />
-          </Key>
-          <Property Name="ProductHeadId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProductHeadPath" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="ProductId" Type="Int32" />
-          <NavigationProperty Name="Product" Relationship="Self.FK__ProductHe__Produ__46E78A0C" FromRole="ProductHead" ToRole="Product" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -336,7 +259,6 @@
           <NavigationProperty Name="Cart" Relationship="Self.FK__Cart__UsersId__173876EA" FromRole="Users" ToRole="Cart" />
           <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__UsersId__36B12243" FromRole="Users" ToRole="Orders" />
           <NavigationProperty Name="Pet" Relationship="Self.FK__Pet__UsersId__3E52440B" FromRole="Users" ToRole="Pet" />
-          <NavigationProperty Name="Product" Relationship="Self.FK__Product__UsersId__440B1D61" FromRole="Users" ToRole="Product" />
         </EntityType>
         <Association Name="FK__Cart__UsersId__173876EA">
           <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
@@ -350,7 +272,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderMass__Order__4BAC3F29">
+        <Association Name="FK__OrderMass__Order__52593CB8">
           <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
           <End Role="OrderMassage" Type="Self.OrderMassage" Multiplicity="*" />
           <ReferentialConstraint>
@@ -362,15 +284,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderMass__Produ__4AB81AF0">
-          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+        <Association Name="FK__OrderMass__PetId__5165187F">
+          <End Role="Pet" Type="Self.Pet" Multiplicity="0..1" />
           <End Role="OrderMassage" Type="Self.OrderMassage" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="ProductId" />
+            <Principal Role="Pet">
+              <PropertyRef Name="PetId" />
             </Principal>
             <Dependent Role="OrderMassage">
-              <PropertyRef Name="ProductId" />
+              <PropertyRef Name="PetId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -410,49 +332,23 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Product__UsersId__440B1D61">
-          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
-          <End Role="Product" Type="Self.Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="UsersId" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="UsersId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__ProductHe__Produ__46E78A0C">
-          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
-          <End Role="ProductHead" Type="Self.ProductHead" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="ProductId" />
-            </Principal>
-            <Dependent Role="ProductHead">
-              <PropertyRef Name="ProductId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="PetStoreEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="PetStoreEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Cart" EntityType="Self.Cart" />
           <EntitySet Name="OrderMassage" EntityType="Self.OrderMassage" />
           <EntitySet Name="Orders" EntityType="Self.Orders" />
           <EntitySet Name="Pet" EntityType="Self.Pet" />
           <EntitySet Name="PetHead" EntityType="Self.PetHead" />
-          <EntitySet Name="Product" EntityType="Self.Product" />
-          <EntitySet Name="ProductHead" EntityType="Self.ProductHead" />
           <EntitySet Name="Users" EntityType="Self.Users" />
           <AssociationSet Name="FK__Cart__UsersId__173876EA" Association="Self.FK__Cart__UsersId__173876EA">
             <End Role="Users" EntitySet="Users" />
             <End Role="Cart" EntitySet="Cart" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderMass__Order__4BAC3F29" Association="Self.FK__OrderMass__Order__4BAC3F29">
+          <AssociationSet Name="FK__OrderMass__Order__52593CB8" Association="Self.FK__OrderMass__Order__52593CB8">
             <End Role="Orders" EntitySet="Orders" />
             <End Role="OrderMassage" EntitySet="OrderMassage" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderMass__Produ__4AB81AF0" Association="Self.FK__OrderMass__Produ__4AB81AF0">
-            <End Role="Product" EntitySet="Product" />
+          <AssociationSet Name="FK__OrderMass__PetId__5165187F" Association="Self.FK__OrderMass__PetId__5165187F">
+            <End Role="Pet" EntitySet="Pet" />
             <End Role="OrderMassage" EntitySet="OrderMassage" />
           </AssociationSet>
           <AssociationSet Name="FK__Orders__UsersId__36B12243" Association="Self.FK__Orders__UsersId__36B12243">
@@ -467,21 +363,13 @@
             <End Role="Pet" EntitySet="Pet" />
             <End Role="PetHead" EntitySet="PetHead" />
           </AssociationSet>
-          <AssociationSet Name="FK__Product__UsersId__440B1D61" Association="Self.FK__Product__UsersId__440B1D61">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Product" EntitySet="Product" />
-          </AssociationSet>
-          <AssociationSet Name="FK__ProductHe__Produ__46E78A0C" Association="Self.FK__ProductHe__Produ__46E78A0C">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="ProductHead" EntitySet="ProductHead" />
-          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="PetStoreModelStoreContainer" CdmEntityContainer="PetStoreEntities">
+        <EntityContainerMapping StorageEntityContainer="PetStoreModelStoreContainer" CdmEntityContainer="PetStoreEntities1">
           <EntitySetMapping Name="Cart">
             <EntityTypeMapping TypeName="PetStoreModel.Cart">
               <MappingFragment StoreEntitySet="Cart">
@@ -500,7 +388,7 @@
             <EntityTypeMapping TypeName="PetStoreModel.OrderMassage">
               <MappingFragment StoreEntitySet="OrderMassage">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="PetId" ColumnName="PetId" />
                 <ScalarProperty Name="OrdersId" ColumnName="OrdersId" />
                 <ScalarProperty Name="Num" ColumnName="Num" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
@@ -540,28 +428,6 @@
                 <ScalarProperty Name="PetHeadId" ColumnName="PetHeadId" />
                 <ScalarProperty Name="PetHeadPath" ColumnName="PetHeadPath" />
                 <ScalarProperty Name="PetId" ColumnName="PetId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Product">
-            <EntityTypeMapping TypeName="PetStoreModel.Product">
-              <MappingFragment StoreEntitySet="Product">
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
-                <ScalarProperty Name="Productdescribe" ColumnName="Productdescribe" />
-                <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
-                <ScalarProperty Name="ProductInventory" ColumnName="ProductInventory" />
-                <ScalarProperty Name="ProductState" ColumnName="ProductState" />
-                <ScalarProperty Name="UsersId" ColumnName="UsersId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProductHead">
-            <EntityTypeMapping TypeName="PetStoreModel.ProductHead">
-              <MappingFragment StoreEntitySet="ProductHead">
-                <ScalarProperty Name="ProductHeadId" ColumnName="ProductHeadId" />
-                <ScalarProperty Name="ProductHeadPath" ColumnName="ProductHeadPath" />
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
